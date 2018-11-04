@@ -1,4 +1,5 @@
 const mysql = require('mysql')
+const moment = require('moment')
 
 module.exports = async (database, idauthor, title, content) => {
     let sql =  `INSERT INTO post 
@@ -8,7 +9,8 @@ module.exports = async (database, idauthor, title, content) => {
     happy,
     sad,
     angry,
-    surprised)
+    surprised,
+    creationDate)
     VALUES
     (${mysql.escape(idauthor)},
     ${mysql.escape(title)},
@@ -16,8 +18,10 @@ module.exports = async (database, idauthor, title, content) => {
     0,
     0,
     0,
-    0)`
+    0,
+    '${moment.utc().format('YYYY-MM-DD HH:mm:ss')}')`
     var result = {}
+    console.log(sql)
     console.log(`Attempting postNewPost ${idauthor} / ${title} / ${content}`)
     await database.query(sql)
         .then(() => {
