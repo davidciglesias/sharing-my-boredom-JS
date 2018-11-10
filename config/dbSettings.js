@@ -1,7 +1,6 @@
-module.exports = {
-    host: "localhost",
-    port: 3306,
-    user: "david",
-    password: "SDARPG",
-    database: "blog"
-}
+export const host = "localhost";
+export const port = 3306;
+export const user = "david";
+export const password = "SDARPG";
+export const database = "blog";
+export const timezone = "utc";
