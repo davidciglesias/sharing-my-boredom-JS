@@ -52,7 +52,7 @@ http.createServer(async (request, response) => {
                         response.statusCode = 404
                         response.end(result.error.toString())
                     } else {
-                        response.setHeader('Content-Type', 'text/plain')
+                        response.setHeader('Content-Type', 'text/plain; charset=utf-8')
                         response.setHeader('X-Content-Type-Options', 'nosniff')
                         response.setHeader('Access-Control-Allow-Origin', '*')
                         response.statusCode = 201
@@ -94,7 +94,7 @@ http.createServer(async (request, response) => {
                 response.statusCode = 404
                 response.end(JSON.stringify(result.content))
             } else {
-                response.setHeader('Content-Type', 'text/plain')
+                response.setHeader('Content-Type', 'text/plain; charset=utf-8')
                 response.setHeader('X-Content-Type-Options', 'nosniff')
                 response.setHeader('Access-Control-Allow-Origin', '*')
                 response.statusCode = 200
@@ -112,7 +112,7 @@ http.createServer(async (request, response) => {
                 response.statusCode = 404
                 response.end(result.error)
             } else {
-                response.setHeader('Content-Type', 'text/plain')
+                response.setHeader('Content-Type', 'text/plain; charset=utf-8')
                 response.setHeader('X-Content-Type-Options', 'nosniff')
                 response.setHeader('Access-Control-Allow-Origin', '*')
                 response.statusCode = 200
@@ -129,7 +129,7 @@ http.createServer(async (request, response) => {
                 response.statusCode = 404
                 response.end(result.error)
             } else {
-                response.setHeader('Content-Type', 'text/plain')
+                response.setHeader('Content-Type', 'text/plain; charset=utf-8')
                 response.setHeader('X-Content-Type-Options', 'nosniff')
                 response.setHeader('Access-Control-Allow-Origin', '*')
                 response.statusCode = 200
@@ -146,7 +146,7 @@ http.createServer(async (request, response) => {
                 response.statusCode = 404
                 response.end(result.error)
             } else {
-                response.setHeader('Content-Type', 'text/plain')
+                response.setHeader('Content-Type', 'text/plain; charset=utf-8')
                 response.setHeader('X-Content-Type-Options', 'nosniff')
                 response.setHeader('Access-Control-Allow-Origin', '*')
                 response.statusCode = 200
