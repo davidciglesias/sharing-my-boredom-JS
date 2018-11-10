@@ -1,7 +1,7 @@
 const mysql = require('mysql')
 
 module.exports = async (database, id) => {
-    let sql =  `SELECT fullname, email, title, content, happy, sad, angry, surprised
+    let sql =  `SELECT fullname, email, title, content, happy, sad, angry, surprised, creationDate
                 FROM post_with_author
                 WHERE idpost = ${mysql.escape(id)}`
     var result = {}
@@ -17,6 +17,7 @@ module.exports = async (database, id) => {
                 database.close()
                 console.log(`Error in getPostById - ${id} - No results`)
                 result.correct = false
+                result.content = ""
                 result.error = 'No results'
             }
         })
@@ -24,6 +25,7 @@ module.exports = async (database, id) => {
             database.close()
             console.log(`Error in getPostById - ${id} - DB Issue ${err}`)
             result.correct = false
+            result.content = ""
             result.error = err
         })
     return result

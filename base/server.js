@@ -11,6 +11,10 @@ const postNewPost = require('../methods/postNewPost')
 const putUpdateStatus = require('../methods/putUpdateStatus')
 
 http.createServer(async (request, response) => {
+    response.setHeader('Access-Control-Allow-Origin', '*')
+    response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    response.setHeader('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS')
+
     request.on('error', (err) => {
         console.error(err)
     });
@@ -21,7 +25,6 @@ http.createServer(async (request, response) => {
 
     
     const parsedUrl = url.parse(request.url, true)
-    console.log(parsedUrl)
     const pathName = parsedUrl.pathname
     const query = parsedUrl.query
     const columnOptions = ['happy', 'sad', 'angry', 'surprised']
@@ -40,9 +43,7 @@ http.createServer(async (request, response) => {
             });
             request.on('end', async function () {
                 try {
-                    console.log(body)
                     var postRequestJson = JSON.parse(body)
-                    console.log(postRequestJson)
                     const dbConnection = new database(dbSettings)
                     var result = await postNewPost(dbConnection, postRequestJson.idauthor,
                         postRequestJson.title, postRequestJson.content)
@@ -70,6 +71,7 @@ http.createServer(async (request, response) => {
         && query.id !== undefined
         && query.column !== undefined && columnOptions.includes(query.column)
         && query.change !== undefined && (query.change == 1 || query.change == -1)) {
+            console.log('Starting put')
             const dbConnection = new database(dbSettings)
             var result = await putUpdateStatus(dbConnection, query.id,
                 query.column, query.change)
@@ -90,7 +92,7 @@ http.createServer(async (request, response) => {
             
             if(!result.correct) {
                 response.statusCode = 404
-                response.end(result.error)
+                response.end(JSON.stringify(result.content))
             } else {
                 response.setHeader('Content-Type', 'text/plain')
                 response.setHeader('X-Content-Type-Options', 'nosniff')

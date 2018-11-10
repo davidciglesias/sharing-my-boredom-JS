@@ -5,7 +5,6 @@ module.exports = async (database, idpost, status, change) => {
                 SET \`${status}\` = \`${status}\` + ${parseInt(change)}
                 WHERE idpost = ${mysql.escape(idpost)}`
     var result = {}
-    console.log(sql)
     console.log(`Attempting putUpdateStatus ${idpost} / ${change} / ${status}`)
     await database.query(sql)
         .then(() => {
