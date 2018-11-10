@@ -49,7 +49,7 @@ http.createServer(async (request, response) => {
                         postRequestJson.title, postRequestJson.content)
                 
                     if(!result.correct) {
-                        response.statusCode = 404
+                        response.statusCode = 400
                         response.end(result.error.toString())
                     } else {
                         response.setHeader('Content-Type', 'text/plain; charset=utf-8')
