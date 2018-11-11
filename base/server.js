@@ -11,6 +11,7 @@ const getAllPosts = require('./../methods/getAllPosts')
 const getAllAuthors = require('./../methods/getAllAuthors')
 const postNewPost = require('./../methods/postNewPost')
 const putUpdateStatus = require('./../methods/putUpdateStatus')
+const putUpdatePost = require('./../methods/putUpdatePost')
 const passport = require('passport')
 const socketio = require('socket.io')
 const { OAuth2Strategy: GoogleStrategy } = require('passport-google-oauth')
@@ -131,7 +132,7 @@ app.post('/postNewPost', async(request, response) => {
     }
 })
 
-app.put('/putUpdate', async(request, response) => {
+app.put('/putUpdateStatus', async(request, response) => {
     const parsedUrl = url.parse(request.url, true)
     const query = parsedUrl.query
     const columnOptions = ['happy', 'sad', 'angry', 'surprised']
@@ -149,6 +150,23 @@ app.put('/putUpdate', async(request, response) => {
             response.status(200).end()
         }
     } 
+})
+
+app.put('/putUpdatePost', async(request, response) => {
+    var postRequestJson = request.body
+    console.log(request)
+    console.log(request.body)
+    console.log(postRequestJson)
+    const dbConnection = new database(dbSettings)
+    var result = await putUpdatePost(dbConnection, postRequestJson.postId,
+        postRequestJson.title, 
+        postRequestJson.content)
+
+    if(!result.correct) {
+        response.status(404).end(result.error.toString())
+    } else {
+        response.status(200).end()
+    }
 })
 
 app.get('/getPostById', async(request, response) => {
