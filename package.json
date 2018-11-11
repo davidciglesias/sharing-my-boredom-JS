@@ -7,12 +7,16 @@
       "resolved": "https://registry.npmjs.org/bignumber.js/-/bignumber.js-4.1.0.tgz",
       "version": "4.1.0"
     },
+    "body-parser": "^1.18.3",
     "core-util-is": {
       "integrity": "sha1-tf1UIgqivFq1eqtxQMlAdUUDwac=",
       "resolved": "https://registry.npmjs.org/core-util-is/-/core-util-is-1.0.2.tgz",
       "version": "1.0.2"
     },
+    "cors": "^2.8.5",
     "dotenv": "^6.1.0",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
     "inherits": {
       "integrity": "sha1-Yzwsg+PaQqUC9SRmAiSA9CCCYd4=",
       "resolved": "https://registry.npmjs.org/inherits/-/inherits-2.0.3.tgz",
@@ -25,6 +29,11 @@
     },
     "moment": "^2.22.2",
     "mysql": "^2.16.0",
+    "passport": "^0.4.0",
+    "passport-google": "^0.3.0",
+    "passport-google-oauth": "^1.0.0",
+    "passport-google-oauth20": "^1.0.0",
+    "passport-twitter": "^1.0.4",
     "process-nextick-args": {
       "integrity": "sha512-MtEC1TqN0EU5nephaJ4rAtThHtC86dNN9qCuEhtshvpVBkAW5ZO7BASN9REnF9eoXGcRub+pFuKEpOHE+HbEMw==",
       "resolved": "https://registry.npmjs.org/process-nextick-args/-/process-nextick-args-2.0.0.tgz",
@@ -49,6 +58,7 @@
       "resolved": "https://registry.npmjs.org/safe-buffer/-/safe-buffer-5.1.2.tgz",
       "version": "5.1.2"
     },
+    "socket.io": "^2.1.1",
     "sqlstring": {
       "integrity": "sha1-R1OT/56RR5rqYtyvDKPRSYOn+0A=",
       "resolved": "https://registry.npmjs.org/sqlstring/-/sqlstring-2.3.1.tgz",
