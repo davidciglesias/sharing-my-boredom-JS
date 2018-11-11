@@ -1,14 +1,21 @@
 const http = require('http')
 const url = require('url')
-const dbSettings = require('../config/dbSettings')
-const database = require('../classes/database')
+const dbSettings = require('./../config/dbSettings')
+const database = require('./../classes/database')
 const port = 2005
-const getPostById = require('../methods/getPostById')
-const getPostByPartialTitle = require('../methods/getPostByPartialTitle')
-const getAllPosts = require('../methods/getAllPosts')
-const getAllAuthors = require('../methods/getAllAuthors')
-const postNewPost = require('../methods/postNewPost')
-const putUpdateStatus = require('../methods/putUpdateStatus')
+const getPostById = require('./../methods/getPostById')
+const getPostByPartialTitle = require('./../methods/getPostByPartialTitle')
+const getAllPosts = require('./../methods/getAllPosts')
+const getAllAuthors = require('./../methods/getAllAuthors')
+const postNewPost = require('./../methods/postNewPost')
+const putUpdateStatus = require('./../methods/putUpdateStatus')
+
+const example = require('dotenv').config({ path: './config/data.env', debug: process.env.DEBUG})
+//const result = example.parse(Buffer.from('POTATO=potato'))
+console.log(example)
+//console.log(result)
+
+
 
 http.createServer(async (request, response) => {
     response.setHeader('Access-Control-Allow-Origin', '*')
