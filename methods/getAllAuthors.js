@@ -1,6 +1,7 @@
 module.exports = async (database) => {
-    let sql =  `SELECT idauthor, fullname
-                FROM author`
+    let sql =  `SELECT a.iduser, u.fullname
+                FROM author a, user u
+                WHERE a.iduser = u.iduser`
     var result = {}
     console.log(`Attempting getAllAuthors`)
     await database.query(sql)

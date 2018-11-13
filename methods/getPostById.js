@@ -1,7 +1,7 @@
 const mysql = require('mysql')
 
 module.exports = async (database, id) => {
-    let sql =  `SELECT fullname, email, title, content, happy, sad, angry, surprised, creationDate
+    let sql =  `SELECT fullname, email, title, content, happy, sad, angry, surprised, creationdate
                 FROM post_with_author
                 WHERE idpost = ${mysql.escape(id)}`
     var result = {}
@@ -11,6 +11,7 @@ module.exports = async (database, id) => {
             if(rows.length > 0) {
                 result.content = rows[0]
                 result.correct = true
+                console.log(result.content)
                 console.log(`Success in getPostById - ${id} - ${rows[0]}`)
                 database.close()
             } else {
