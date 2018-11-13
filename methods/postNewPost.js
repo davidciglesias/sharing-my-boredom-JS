@@ -10,7 +10,7 @@ module.exports = async (database, idauthor, title, content) => {
     sad,
     angry,
     surprised,
-    creationDate)
+    creationdate)
     VALUES
     (${mysql.escape(idauthor)},
     ${mysql.escape(title)},
