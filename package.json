@@ -2,6 +2,7 @@
   "requires": true,
   "lockfileVersion": 1,
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "bignumber.js": {
       "integrity": "sha512-eJzYkFYy9L4JzXsbymsFn3p54D+llV27oTQ+ziJG7WFRheJcNZilgVXMG0LoZtlQSKBsJdWtLFqOD0u+U0jZKA==",
       "resolved": "https://registry.npmjs.org/bignumber.js/-/bignumber.js-4.1.0.tgz",

@@ -10,6 +10,8 @@ const getPostByPartialTitle = require('./../methods/getPostByPartialTitle')
 const getAllPosts = require('./../methods/getAllPosts')
 const getAllAuthors = require('./../methods/getAllAuthors')
 const postNewPost = require('./../methods/postNewPost')
+const postNewUser = require('./../methods/postNewUser')
+const postCheckCredentials = require('./../methods/postCheckCredentials')
 const putUpdateStatus = require('./../methods/putUpdateStatus')
 const putUpdatePost = require('./../methods/putUpdatePost')
 const passport = require('passport')
@@ -20,6 +22,7 @@ const express = require('express')
 const session = require('express-session')
 const bodyParser = require('body-parser');
 const cors = require('cors')
+const bcrypt = require('bcryptjs')
 
 const app = express()
 const server = http.createServer(app)
@@ -124,11 +127,52 @@ app.post('/postNewPost', async(request, response) => {
         response.status(400).end(result.error.toString())
     } else {
         response.set({
-            'Content-Type': 'text/plain',
+            'Content-Type': 'application/json',
             'Charset': 'utf-8',
             'X-Content-Type-Options': 'nosniff',
             'Access-Control-Allow-Origin': '*'
         }).status(201).end()
+    }
+})
+
+app.post('/postNewUser', async(request, response) => {
+    var postRequestJson = request.body
+    const dbConnection = new database(dbSettings)
+    var saltedpassword = await bcrypt.hash(postRequestJson.password, 10)
+
+    var result = await postNewUser(dbConnection, postRequestJson.username,
+        postRequestJson.email, saltedpassword, postRequestJson.isauthor)
+
+    if(!result.correct) {
+        response.status(400).end(result.error.toString())
+    } else {
+        response.set({
+            'Content-Type': 'application/json',
+            'Charset': 'utf-8',
+            'X-Content-Type-Options': 'nosniff',
+            'Access-Control-Allow-Origin': '*'
+        }).status(201).end()
+    }
+})
+
+app.post('/postLogin', async(request, response) => {
+    var postRequestJson = request.body
+    const dbConnection = new database(dbSettings)
+
+    var result = await postCheckCredentials(dbConnection, 
+        postRequestJson.email, postRequestJson.password)
+
+    console.log(result)
+
+    if(!result.correct) {
+        response.status(400).end(result.error.toString())
+    } else {
+        response.set({
+            'Content-Type': 'application/json',
+            'Charset': 'utf-8',
+            'X-Content-Type-Options': 'nosniff',
+            'Access-Control-Allow-Origin': '*'
+        }).status(200).end()
     }
 })
 
