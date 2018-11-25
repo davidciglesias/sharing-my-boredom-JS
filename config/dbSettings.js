@@ -1,8 +1,8 @@
 module.exports = {
     host: "localhost",
     port: 3306,
-    user: "david",
-    password: "SDARPG",
-    database: "blog",
+    user: "dcamara",
+    password: "RN34nl5lygwSNP64M6JD",
+    database: "sharemyboredomdev",
     timezone: "utc"
 }
